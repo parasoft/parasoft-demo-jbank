@@ -15,18 +15,21 @@ public class Customer
 {
     private static final String SSN_REGEX = "\\d\\d\\d-\\d\\d-\\d\\d\\d\\d";
     private String _name;
-    private String _ssn;
+    private String _socialSecurityNumber;
+    private String _zipcode;
 
-    public Customer(String name, String ssn)
+    public Customer(String name, String ssn, String zipcode)
     {
-        if (name.length() >= 20) {
-            throw new IllegalArgumentException("Name cannot be longer than 20 characters");
+        int length = name.length();
+        if ((length < 4) || (length >= 20)) {
+            throw new IllegalArgumentException("Name cannot be shorter than 3 and longer than 20 characters");
         }
         if (!ssn.matches(SSN_REGEX)) {
             throw new IllegalArgumentException("Invalid social security number: " + ssn);
         }
         _name = name;
-        _ssn = ssn;
+        _socialSecurityNumber = ssn;
+        _zipcode = zipcode;
     }
 
     public String getName()
@@ -34,19 +37,35 @@ public class Customer
         return _name;
     }
 
-    public String getSSN()
-    {
-        return _ssn;
-    }
-
     public void setName(String name)
     {
         _name = name;
     }
 
-    public void setSSN(String ssn)
+    public String getSSN()
     {
-        _ssn = ssn;
+        return _socialSecurityNumber;
+    }
+
+    public void setSSN(String socialSecurityNumber)
+    {
+        _socialSecurityNumber = socialSecurityNumber;
+    }
+
+    /**
+     * @return Returns the _zipcode.
+     */
+    public String getZipcode()
+    {
+        return _zipcode;
+    }
+
+    /**
+     * @param _zipcode The _zipcode to set.
+     */
+    public void setZipcode(String zipcode)
+    {
+        _zipcode = zipcode;
     }
 
     public String toStrng()
@@ -60,7 +79,7 @@ public class Customer
         if (o instanceof Customer) {
             Customer cust = (Customer)o;
             if (_name.equals(cust.getName())) {
-                if (_ssn.equals(cust.getSSN())) {
+                if (_socialSecurityNumber.equals(cust.getSSN())) {
                     return true;
                 }
             }
@@ -81,20 +100,17 @@ public class Customer
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            Class.forName("org.gjt.mm.mysql.Driver");
             connection = DriverManager.getConnection("bank", "bank", "system");
-        } catch (ClassNotFoundException e) {
-            System.err.println("No suitable driver...");
-            throw new ConnectionException("Connection Failed");
-        } catch (SQLException e) {
-            System.err.println("Cannot connect to database: " + e.getMessage());
+        } catch (SQLException sqle) {
+            System.err.println("Cannot connect to database: " + sqle.getMessage());
             throw new ConnectionException("Connection Failed");
         }
         try {
-            statement = connection.prepareStatement("select * from accounts where id=" + _ssn);
+            statement = connection.prepareStatement("select * from accounts where id=" + _socialSecurityNumber);
             resultSet = statement.executeQuery();
             _name = resultSet.getString(0);
-            _ssn = resultSet.getString(2);
+            _socialSecurityNumber = resultSet.getString(2);
+            _zipcode = resultSet.getString(3);
             resultSet.close();
             statement.close();
         } catch (SQLException exception) {

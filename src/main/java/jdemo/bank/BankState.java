@@ -2,7 +2,7 @@ package jdemo.bank;
 
 public class BankState
 {
-    private static final String MAINTENANCE_MODE = "demo-bank-maintanance";
+    private static final String MAINTENANCE_MODE = "jbank-maintanance";
 
     public static Boolean isMaintenanceMode()
     {

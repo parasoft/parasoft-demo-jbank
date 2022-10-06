@@ -11,23 +11,15 @@ import java.util.Map;
  */
 public class Bank
 {
-    private Map<String, Account> _accounts = new HashMap<String, Account>();
-    private static LogAccountInfo _logger = new LogAccountInfo();
+    private Map<String, Account> _accounts;
+    private static LogAccountInfo _logger;
     private static Integer ACCOUNTS_LIMIT = 10;
 
     public Bank()
     {
+        _accounts = new HashMap<String, Account>();
+        _logger = new LogAccountInfo();
         initialize();
-    }
-
-    private void initialize()
-    {
-        Customer smith3453 = new Customer("Jim Smith", "000-00-0000");
-        this.addAccount(new Account(smith3453, 1000));
-        Customer miller974 = new Customer("Marc Miller", "111-11-1111");
-        this.addAccount(new Account(miller974, 200));
-        Customer johnson265 = new Customer("John Johnson", "222-22-2222");
-        this.addAccount(new Account(johnson265, 5000));
     }
 
     public Boolean addAccount(Account account)
@@ -36,6 +28,10 @@ public class Bank
             return false;
         }
         _logger.log(account);
+        if (account.getStatus().equals(Account.STATUS_PLATINUM)) {
+            CreditCard creditCard = getCreditCard(account);
+            account.setCreditCard(creditCard);
+        }
         _accounts.put(account.getID(), account);
         return true;
     }
@@ -86,4 +82,37 @@ public class Bank
     {
         ACCOUNTS_LIMIT = limit;
     }
+
+    private void initialize()
+    {
+        Customer smith3453 = genCustomer("John Smith");
+        addAccount(new Account(smith3453, 1000));
+        Customer miller974 = genCustomer("Marc Miller");
+        addAccount(new Account(miller974, 200));
+        Customer johnson265 = genCustomer("John Johnson");
+        addAccount(new Account(johnson265, 5000));
+    }
+    
+    /**
+     * @jtest.factory
+     */
+    public static Customer genCustomer(String name)
+    {
+        String snn = String.valueOf(Integer.toUnsignedString(name.hashCode()));
+        snn = snn.substring(0, 3) + "-" + snn.substring(3, 5) + "-" + snn.substring(0, 4);
+        String zipcode = String.valueOf(Integer.toUnsignedString(name.hashCode())).substring(0, 5);
+        return new Customer(name, snn, zipcode);
+    }
+    
+    /**
+     * @jtest.factory
+     */
+    public static CreditCard getCreditCard(Account account)
+    {
+        Customer customer = account.getCustomer();
+        String ccn = String.valueOf(Integer.toUnsignedString(customer.getName().hashCode()));
+        ccn = ccn.substring(0, 4) + "-" + ccn.substring(1, 5) + "-" + ccn.substring(1, 5) + "-" + ccn.substring(0, 4);
+        return new CreditCard(account.getID(), customer, account.getBalance() / 10, ccn);
+    }
+
 }

@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * LogStatement
@@ -17,7 +19,8 @@ public class LogAccountInfo
 
     public LogAccountInfo()
     {
-        _file = new File("bank-account-" + System.currentTimeMillis() + ".log");
+        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        _file = new File("bank-account-" + date + ".log");
     }
 
     public boolean log(Account account)

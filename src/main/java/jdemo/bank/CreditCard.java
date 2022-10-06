@@ -12,30 +12,29 @@ public class CreditCard
     public static final int[] ZIP_DIGITS = new int[] { 5 };
     public static final int[] CARD_DIGITS = new int[] { 4, 4, 4, 4 };
 
-    private int _currentBalance;
     private String _customerId;
-    private String _creditCardNumber;
+    private String _customerName;
     private String _socialSecurityNumber;
     private String _zipcode;
-    private String _customerName;
+    private int _currentBalance;
+    private String _creditCardNumber;
 
     /**
      * Constructor. Only accepts valid inputs.
      *
      * @throws IllegalArgumentException invalid credit card data
-     * @pre securityNumber != null
-     * @pre zipcode != null
+     * @pre customer != null
      * @pre creditCardNumber != null
      */
-    public CreditCard(int balance, String id, String securityNumber, String name, String zipcode, String creditCardNumber)
-            throws IllegalArgumentException
+    public CreditCard(String id, Customer customer, int balance, String creditCardNumber)
+        throws IllegalArgumentException
     {
         super();
         _currentBalance = balance;
         _customerId = id;
-        _socialSecurityNumber = securityNumber;
-        _customerName = name;
-        _zipcode = zipcode;
+        _socialSecurityNumber = customer.getSSN();
+        _customerName = customer.getName();
+        _zipcode = customer.getZipcode();
         _creditCardNumber = creditCardNumber;
         if (!validate()) {
             throw new IllegalArgumentException("Invalid credit card data");
@@ -45,7 +44,7 @@ public class CreditCard
     /**
      * Validate the credit card data, including zipcode, social security number, credit card numbers, balance, customer name and id.
      */
-    private boolean validate()
+    public boolean validate()
     {
         return validate(ZIP_DIGITS, _zipcode) && validate(SSN_DIGITS, _socialSecurityNumber) && validate(CARD_DIGITS,
                 _creditCardNumber) && (_currentBalance > 0) && (_customerId.length() != 0) && (_customerName.length() != 0);
@@ -93,8 +92,9 @@ public class CreditCard
     public void makePayment(Account account)
         throws IllegalArgumentException
     {
-        if (account.getID() != _customerId)
+        if (account.getID() != _customerId) {
             throw new IllegalArgumentException("Wrong customer id");
+        }
         account.apply(new DepositTransaction(_currentBalance));
         _currentBalance = 0;
     }
@@ -102,7 +102,7 @@ public class CreditCard
     /**
      * @return Returns the _creditCardNumber.
      */
-    public String get_creditCardNumber()
+    public String getCreditCardNumber()
     {
         return _creditCardNumber;
     }
@@ -110,7 +110,7 @@ public class CreditCard
     /**
      * @param cardNumber The _creditCardNumber to set.
      */
-    public void set_creditCardNumber(String cardNumber)
+    public void setCreditCardNumber(String cardNumber)
     {
         _creditCardNumber = cardNumber;
     }
@@ -118,7 +118,7 @@ public class CreditCard
     /**
      * @return Returns the _currentBalance.
      */
-    public int get_currentBalance()
+    public int getCurrentBalance()
     {
         return _currentBalance;
     }
@@ -126,7 +126,7 @@ public class CreditCard
     /**
      * @param balance The _currentBalance to set.
      */
-    public void set_currentBalance(int balance)
+    public void setCurrentBalance(int balance)
     {
         _currentBalance = balance;
     }
@@ -134,7 +134,7 @@ public class CreditCard
     /**
      * @return Returns the _customerId.
      */
-    public String get_customerId()
+    public String getCustomerId()
     {
         return _customerId;
     }
@@ -142,7 +142,7 @@ public class CreditCard
     /**
      * @param id The _customerId to set.
      */
-    public void set_customerId(String id)
+    public void setCustomerId(String id)
     {
         _customerId = id;
     }
@@ -150,7 +150,7 @@ public class CreditCard
     /**
      * @return Returns the _customerName.
      */
-    public String get_customerName()
+    public String getCustomerName()
     {
         return _customerName;
     }
@@ -158,7 +158,7 @@ public class CreditCard
     /**
      * @param name The _customerName to set.
      */
-    public void set_customerName(String name)
+    public void setCustomerName(String name)
     {
         _customerName = name;
     }
@@ -166,7 +166,7 @@ public class CreditCard
     /**
      * @return Returns the _socialSecurityNumber.
      */
-    public String get_socialSecurityNumber()
+    public String getSocialSecurityNumber()
     {
         return _socialSecurityNumber;
     }
@@ -174,7 +174,7 @@ public class CreditCard
     /**
      * @param securityNumber The _socialSecurityNumber to set.
      */
-    public void set_socialSecurityNumber(String securityNumber)
+    public void setSocialSecurityNumber(String securityNumber)
     {
         _socialSecurityNumber = securityNumber;
     }
@@ -182,7 +182,7 @@ public class CreditCard
     /**
      * @return Returns the _zipcode.
      */
-    public String get_zipcode()
+    public String getZipcode()
     {
         return _zipcode;
     }
@@ -190,8 +190,8 @@ public class CreditCard
     /**
      * @param _zipcode The _zipcode to set.
      */
-    public void set_zipcode(String _zipcode)
+    public void setZipcode(String zipcode)
     {
-        this._zipcode = _zipcode;
+        _zipcode = zipcode;
     }
 }
