@@ -4,9 +4,9 @@ package com.parasoft.jdemo.atm;
  * Display interface for ATM user interactions.
  * Handles showing information and balance to users.
  */
-public class BaseDisplay {
+public class ConsoleDisplay {
     
-    public BaseDisplay() {
+    public ConsoleDisplay() {
     }
     
     /**

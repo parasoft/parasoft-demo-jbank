@@ -18,9 +18,9 @@ public class ATM {
     
     private Account currentAccount;
     private Bank bank;
-    private BaseDisplay display;
+    private ConsoleDisplay display;
     
-    public ATM(Bank bank, BaseDisplay display) {
+    public ATM(Bank bank, ConsoleDisplay display) {
         this.bank = bank;
         this.display = display;
     }
@@ -98,7 +98,7 @@ public class ATM {
     public static void main(String[] args) {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         Bank bank = new Bank();
-        BaseDisplay display = new BaseDisplay();
+        ConsoleDisplay display = new ConsoleDisplay();
         ATM atm = new ATM(bank, display);
         
         System.out.println("========================================");
@@ -160,7 +160,7 @@ public class ATM {
     /**
      * Login to account and perform transactions.
      */
-    private static void loginAndTransact(ATM atm, Bank bank, BaseDisplay display, 
+    private static void loginAndTransact(ATM atm, Bank bank, ConsoleDisplay display, 
                                          java.util.Scanner scanner) {
         System.out.println("\n--- Login ---");
         System.out.print("Enter account number: ");
