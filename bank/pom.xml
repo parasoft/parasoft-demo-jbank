@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>parasoft-demo</groupId>
+        <artifactId>parasoft-demo-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    
+    <artifactId>bank</artifactId>
+    <packaging>jar</packaging>
+    
+    <name>Parasoft Demo Bank</name>
+    <description>
+        <![CDATA[<h3>Parasoft Bank Demo Project</h3><p>The project contains sample bank application with various errors, and bad practice examples which can be detected by Jtest analysis.</p>]]>
+    </description>
+    
+    <build>
+        <finalName>Bank Demo</finalName>
+        <plugins>
+            <!-- plugin>
+                <groupId>com.parasoft.jtest</groupId>
+                <artifactId>jtest-maven-plugin</artifactId>
+                <version>2022.1.0</version>
+                <configuration>
+                    <!- enforcing chosen configuration
+                    <config>builtin://Demo Configuration</config>
+                     ->
+                </configuration>
+            </plugin -->
+            <!-- plugin>
+                <groupId>com.parasoft.jtest.tia</groupId>
+                <artifactId>tia-maven-plugin</artifactId>
+                <version>2022.1.0</version>
+            </plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <reporting>
+        <plugins>
+            <!-- Jtest as reporting plugin -->
+            <!-- plugin>
+                <groupId>com.parasoft.jtest</groupId>
+                <artifactId>jtest-maven-plugin</artifactId>
+                <version>2022.1.0</version>
+                <configuration>
+                    <!- enforcing chosen configuration
+                    <config>builtin://Demo Configuration</config>
+                     ->
+                </configuration>
+                <!- avoid inheritance (because it is an aggregator plugin) ->
+                <inherited>false</inherited>
+            </plugin -->
+        </plugins>
+    </reporting>
+    
+    <dependencies>
+        <!-- JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        
+        <!-- JUnit 5 runner for JUnit 4-->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+        </dependency>
+        
+        <!-- Mockito -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

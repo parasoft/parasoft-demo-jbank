@@ -1,4 +1,4 @@
-package jdemo.bank;
+package com.parasoft.jdemo.bank;
 
 /**
  * Withdrawal transaction.

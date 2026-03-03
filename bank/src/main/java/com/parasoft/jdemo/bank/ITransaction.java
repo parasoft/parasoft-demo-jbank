@@ -1,4 +1,4 @@
-package jdemo.bank;
+package com.parasoft.jdemo.bank;
 
 /**
  * Base interface for all transactions.

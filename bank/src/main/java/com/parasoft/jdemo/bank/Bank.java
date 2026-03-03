@@ -1,4 +1,4 @@
-package jdemo.bank;
+package com.parasoft.jdemo.bank;
 
 import java.util.HashMap;
 import java.util.List;

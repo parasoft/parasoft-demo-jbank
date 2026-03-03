@@ -1,4 +1,4 @@
-package jdemo.bank;
+package com.parasoft.jdemo.bank;
 
 import java.io.BufferedWriter;
 import java.io.File;

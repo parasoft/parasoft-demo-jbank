@@ -1,4 +1,4 @@
-package jdemo.bank;
+package com.parasoft.jdemo.bank;
 
 /**
  * Credit card account (identical to CreditCard). This class gets about 98% line coverage when run in Jtest with Generation enabled, covering all

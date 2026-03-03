@@ -23,6 +23,9 @@
 hs_err_pid*
 /.idea/
 /target/
+/bank/target/
+/atm/target/
+/atm/cpp/
 /.classpath
 /.project
 /.settings/

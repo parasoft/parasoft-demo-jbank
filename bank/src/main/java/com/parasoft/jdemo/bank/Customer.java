@@ -1,4 +1,4 @@
-package jdemo.bank;
+package com.parasoft.jdemo.bank;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
