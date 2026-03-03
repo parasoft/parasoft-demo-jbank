@@ -20,29 +20,38 @@ parasoft-demo-jbank/
 │   ├── src/
 │   │   └── main/
 │   │       └── java/
-│   │           └── jdemo/
-│   │               └── bank/
-│   │                   ├── Bank.java
-│   │                   ├── Account.java
-│   │                   ├── Customer.java
-│   │                   ├── CreditCard.java
-│   │                   ├── AbstractTransaction.java
-│   │                   ├── DepositTransaction.java
-│   │                   ├── WithdrawalTransaction.java
-│   │                   ├── ITransaction.java
-│   │                   ├── ICreditAgency.java
-│   │                   ├── BankState.java
-│   │                   ├── ConnectionException.java
-│   │                   └── LogAccountInfo.java
+│   │           └── com/
+│   │               └── parasoft/
+│   │                   └── jdemo/
+│   │                       └── bank/
+│   │                           ├── Bank.java
+│   │                           ├── Account.java
+│   │                           ├── Customer.java
+│   │                           ├── CreditCard.java
+│   │                           ├── AbstractTransaction.java
+│   │                           ├── DepositTransaction.java
+│   │                           ├── WithdrawalTransaction.java
+│   │                           ├── ITransaction.java
+│   │                           ├── ICreditAgency.java
+│   │                           ├── BankState.java
+│   │                           ├── ConnectionException.java
+│   │                           └── LogAccountInfo.java
+│   │   └── test/
+│   │       └── java/
 │   └── target/
 └── atm/                    # ATM application module
     ├── pom.xml
     ├── src/
     │   ├── main/
     │   │   └── java/
-    │   │       └── jdemo/
-    │   │           └── atm/
-    │   │               └── ATM.java
+    │   │       └── com/
+    │   │           └── parasoft/
+    │   │               └── jdemo/
+    │   │                   └── atm/
+    │   │                       ├── ATM.java
+    │   │                       ├── Account.java
+    │   │                       ├── Bank.java
+    │   │                       └── BaseDisplay.java
     │   └── test/
     │       └── java/
     └── target/
@@ -84,6 +93,41 @@ The bank module contains a sample bank application with various errors and bad p
 
 ### atm
 The atm module contains the ATM (Automated Teller Machine) banking terminal application. An ATM allows customers to perform financial transactions such as withdrawals, deposits, and balance inquiries without needing a human teller.
+
+**Origin:** Converted from C++ to Java implementation with enhanced interactive features.
+
+**Key Components:**
+- `ATM.java` - Main ATM controller with interactive menu system and transaction processing
+- `Account.java` - ATM account representation with balance management
+- `Bank.java` - Account management system for ATM operations
+- `BaseDisplay.java` - User interface for displaying messages and balance information
+
+**Interactive Features:**
+- **Main Menu:**
+  - Create new accounts with password protection
+  - Login to existing accounts
+  - Exit application
+  
+- **Transaction Menu** (after login):
+  - View current account balance
+  - Deposit money into account
+  - Withdraw money from account
+  - Logout and return to main menu
+
+**Running the ATM Application:**
+```bash
+# Compile the project first
+mvn clean compile
+
+# Run the ATM application
+java -cp atm/target/classes com.parasoft.jdemo.atm.ATM
+```
+
+**Usage Example:**
+1. Create a new account with initial deposit and password
+2. Login using your account number and password
+3. Perform transactions (view balance, deposit, or withdraw)
+4. Logout when finished
 
 **Dependencies:**
 - Depends on the `bank` module for banking operations
