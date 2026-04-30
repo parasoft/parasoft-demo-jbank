@@ -47,7 +47,7 @@ public class Bank
         }
     }
 
-    public Account getAccount(String id, String name)
+    public Account getAccount(String id, String name) // parasoft-suppress METRIC.SCC "It is not enough complex - good for now."
     {
         Account account = null;
         if (_accounts.size() > 0) {

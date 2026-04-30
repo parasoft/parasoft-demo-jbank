@@ -113,7 +113,7 @@ public class Account
         }
     }
 
-    private String getAccountStatus(int balance)
+    private String getAccountStatus(int balance) // parasoft-suppress METRIC.SCC "It is not enough complex - accepted."
     {
         if (balance < BALANCE_GOLD_MIN) {
             return STATUS_SILVER;
