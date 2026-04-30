@@ -33,8 +33,26 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
+            <!-- Jtest Maven Plugin -->
+            <plugin>
+                <groupId>com.parasoft.jtest</groupId>
+                <artifactId>jtest-maven-plugin</artifactId>
+                <version>2026.1.0</version>
+            </plugin>
         </plugins>
     </build>
+    
+    <reporting>
+        <plugins>
+            <!-- Jtest as reporting plugin -->
+            <plugin>
+                <groupId>com.parasoft.jtest</groupId>
+                <artifactId>jtest-maven-plugin</artifactId>
+                <version>2026.1.0</version>
+                <inherited>false</inherited>
+            </plugin>
+        </plugins>
+    </reporting>
     
     <dependencies>
         <!-- Dependency on bank module -->

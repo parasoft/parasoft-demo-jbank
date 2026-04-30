@@ -98,6 +98,12 @@
                         </includes>
                     </configuration>
                 </plugin>
+                <!-- Jtest Maven Plugin -->
+                <plugin>
+                    <groupId>com.parasoft.jtest</groupId>
+                    <artifactId>jtest-maven-plugin</artifactId>
+                    <version>2026.1.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
