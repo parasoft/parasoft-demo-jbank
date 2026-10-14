@@ -37,7 +37,7 @@
             <plugin>
                 <groupId>com.parasoft.jtest</groupId>
                 <artifactId>jtest-maven-plugin</artifactId>
-                <version>2026.1.0</version>
+                <version>2026.2.0</version>
             </plugin>
         </plugins>
     </build>
@@ -48,7 +48,7 @@
             <plugin>
                 <groupId>com.parasoft.jtest</groupId>
                 <artifactId>jtest-maven-plugin</artifactId>
-                <version>2026.1.0</version>
+                <version>2026.2.0</version>
                 <inherited>false</inherited>
             </plugin>
         </plugins>
@@ -62,13 +62,13 @@
             <version>${project.version}</version>
         </dependency>
         
-        <!-- JUnit 5 -->
+        <!-- JUnit 6 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
         </dependency>
         
-        <!-- JUnit 5 runner for JUnit 4-->
+        <!-- JUnit 6 runner for JUnit 4-->
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
